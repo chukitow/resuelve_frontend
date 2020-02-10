@@ -6,6 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Login from 'apps/login';
+import Admin from 'apps/admin';
 import { isEmpty } from 'lodash';
 import { getSession } from 'lib/session';
 
@@ -32,6 +33,7 @@ function App() {
           <Login />
         </Route>
         <PrivateRoute path="/admin">
+          <Admin />
         </PrivateRoute>
         <Redirect to="/login" />
       </Switch>
