@@ -1,44 +1,57 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import UserService from 'services/User';
 import { get } from 'lodash';
 import SortableTable from 'shared/sortable-table';
 
-const columns = [
-  {
-    Header: 'Nombre',
-    accessor: 'nombre',
-  },
-  {
-    Header: 'Apellido',
-    accessor: 'apellido',
-  },
-  {
-    Header: 'Segundo Nombre',
-    accessor: 'segundo_nombre',
-  },
-  {
-    Header: 'Segundo Apellido',
-    accessor: 'segundo_apellido',
-  },
-  {
-    Header: 'Email',
-    accessor: 'email',
-  },
-  {
-    Header: 'Activo',
-    accessor: 'active',
-    Cell: ({ row }) => {
-      if(row.original.active) {
-        return <span>Active</span>
+const Users = () => {
+  const history = useHistory();
+  const columns = [
+    {
+      Header: 'Nombre',
+      accessor: 'nombre',
+    },
+    {
+      Header: 'Apellido',
+      accessor: 'apellido',
+    },
+    {
+      Header: 'Segundo Nombre',
+      accessor: 'segundo_nombre',
+    },
+    {
+      Header: 'Segundo Apellido',
+      accessor: 'segundo_apellido',
+    },
+    {
+      Header: 'Email',
+      accessor: 'email',
+    },
+    {
+      Header: 'Activo',
+      accessor: 'active',
+      Cell: ({ row }) => {
+        if(row.original.active) {
+          return <span>Active</span>
+        }
+        else {
+          return <span>Inactive</span>
+        }
       }
-      else {
-        return <span>Inactive</span>
+    },
+    {
+      Header: '',
+      accessor: 'actions',
+      Cell: ({ row }) => {
+        return (
+          <a href="/" onClick={(e) => {
+            e.preventDefault();
+            history.push(`/admin/${row.original.uid}/movements`);
+          }}>Movimientos</a>
+        )
       }
     }
-  },
-];
-
-const Users = () => {
+  ];
   const [usersData, setUserData] = useState([]);
   const [query, setQuery] = useState({ page: 0 });
 
