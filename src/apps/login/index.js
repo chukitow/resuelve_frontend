@@ -16,7 +16,7 @@ const Login = () => {
   }, [history]);
 
   return (
-    <Container>
+    <Container className="main-container">
       <Tabs defaultActiveKey="admin">
         <Tab eventKey="admin" title="Admin">
           <LoginForm

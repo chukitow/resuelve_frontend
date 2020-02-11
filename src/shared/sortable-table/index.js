@@ -27,7 +27,7 @@ const SortableTable = ({
   );
 
   return (
-    <>
+    <div class="table-responsive">
       <table {...getTableProps({ className: 'table table-striped'})}>
         <thead>
           {headerGroups.map(headerGroup => (
@@ -108,7 +108,7 @@ const SortableTable = ({
           </Pagination>
         </div>
       }
-    </>
+    </div>
   )
 };
 

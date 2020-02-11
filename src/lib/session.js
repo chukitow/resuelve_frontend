@@ -9,3 +9,6 @@ export const getSession = () =>
 
 export const getDecryptedSession = () =>
   jwtDecode(getSession());
+
+export const clearSession = () =>
+  window.localStorage.clear();
