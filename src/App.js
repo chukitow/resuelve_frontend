@@ -8,6 +8,7 @@ import {
 import Login from 'apps/login';
 import AdminUsers from 'apps/admin/users';
 import AdminUserMovements from 'apps/admin/movements';
+import UserMovements from 'apps/users/movements';
 import { isEmpty } from 'lodash';
 import { getSession } from 'lib/session';
 
@@ -38,6 +39,9 @@ function App() {
         </PrivateRoute>
         <PrivateRoute path="/admin/:id/movements" exact={true}>
           <AdminUserMovements />
+        </PrivateRoute>
+        <PrivateRoute path="/user" exact={true}>
+          <UserMovements />
         </PrivateRoute>
         <Redirect to="/login" />
       </Switch>

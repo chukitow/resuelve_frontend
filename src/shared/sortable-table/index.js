@@ -27,7 +27,7 @@ const SortableTable = ({
   );
 
   return (
-    <div class="table-responsive">
+    <div className="table-responsive">
       <table {...getTableProps({ className: 'table table-striped'})}>
         <thead>
           {headerGroups.map(headerGroup => (

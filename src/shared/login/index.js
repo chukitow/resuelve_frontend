@@ -17,7 +17,8 @@ const Login = ({
   const onSubmit = (values) => {
     //TODO: handle authentication based on type
     setSubmiting(true);
-    LoginService.admin({
+    const authService = type === 'admin' ? LoginService.admin : LoginService.user
+    authService({
       ...values,
       password: crypto.MD5(values.password).toString()
     })
@@ -36,7 +37,7 @@ const Login = ({
   return (
     <Formik
       onSubmit={onSubmit}
-      initialValues={{ user: '', password: '' }}
+      initialValues={type === 'admin' ? { user: '', password: '' } : { email: '', password: '' }}
       >
       {({
         values,
@@ -62,9 +63,9 @@ const Login = ({
                   <Form.Label>User</Form.Label>
                   <Form.Control
                     {...inputProps}
-                    type="text"
-                    name="user"
-                    placeholder="user" />
+                    {...(type === 'admin' ? { name: 'user', type: 'text'} : { name: 'email', type: 'email'})}
+                    placeholder="user"
+                    />
                 </Form.Group>
 
                 <Form.Group controlId={`${type}_password`}>
