@@ -49,7 +49,9 @@ const Login = ({
           <Card className="login-card">
             <Card.Header>{capitalize(type)}</Card.Header>
             <Card.Body>
-              <Form onSubmit={handleSubmit}>
+              <Form
+                id={`login-${type}`}
+                onSubmit={handleSubmit}>
                 {
                   loginError &&
                   <Alert
@@ -62,6 +64,7 @@ const Login = ({
                 <Form.Group controlId={`${type}_user`}>
                   <Form.Label>User</Form.Label>
                   <Form.Control
+                    value={type === 'admin' ? values.user : values.email}
                     {...inputProps}
                     {...(type === 'admin' ? { name: 'user', type: 'text'} : { name: 'email', type: 'email'})}
                     placeholder="user"
@@ -72,11 +75,13 @@ const Login = ({
                   <Form.Label>Password</Form.Label>
                   <Form.Control
                     {...inputProps}
+                    value={values.password}
                     type="password"
                     name="password"
                     placeholder="Password" />
                 </Form.Group>
                 <Button
+                  id={`submit-button-${type}`}
                   disabled={submiting}
                   variant="primary"
                   type="submit">

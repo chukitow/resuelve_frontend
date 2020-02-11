@@ -44,7 +44,7 @@ const Users = () => {
       accessor: 'actions',
       Cell: ({ row }) => {
         return (
-          <a href="/" onClick={(e) => {
+          <a href="/" className="see-user-movements" onClick={(e) => {
             e.preventDefault();
             history.push(`/admin/${row.original.uid}/movements`);
           }}>Movimientos</a>
